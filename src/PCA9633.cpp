@@ -16,6 +16,17 @@ PCA9633::PCA9633(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm) {
     _regRedPwm = regRedPwm;
     _regGreenPwm = regGreenPwm;
     _regBluePwm = regBluePwm;
+
+    _hasWhiteChannel = true;
+}
+
+PCA9633::PCA9633(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm,
+                 uint8_t regWhitePwm)
+                 : PCA9633(regRedPwm, regGreenPwm, regBluePwm) {
+
+    _regWhitePwm = regWhitePwm;
+
+    _hasWhiteChannel = false;
 }
 
 void PCA9633::begin(uint16_t deviceAddress, TwoWire *wire) {
@@ -91,6 +102,15 @@ void PCA9633::setRGB(uint8_t r, uint8_t g, uint8_t b) {
     setPwm(_regRedPwm, r);
     setPwm(_regGreenPwm, g);
     setPwm(_regBluePwm, b);
+}
+
+void PCA9633::setRGBW(uint8_t r, uint8_t g, uint8_t b, uint8_t w) {
+
+    setRGB(r, g, b);
+
+    if (_hasWhiteChannel) {
+        setPwm(_regWhitePwm, w);
+    }
 }
 
 void PCA9633::setLdrState(uint8_t state, uint8_t ldrBit) {

@@ -285,13 +285,24 @@ class PCA9633 {
 public:
 
     /**
-     * Constructor for PCA9633.
+     * Constructor for PCA9633 with RGB.
      *
      * @param regRedPwm     Register address for red color channel
      * @param regGreenPwm   Register address for green color channel
      * @param regBluePwm    Register address for blue color channel
      */
     PCA9633(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm);
+
+    /**
+     * Constructor for PCA9633 with RGBW.
+     *
+     * @param regRedPwm     Register address for red color channel
+     * @param regGreenPwm   Register address for green color channel
+     * @param regBluePwm    Register address for blue color channel
+     * @param regWhitePwm   Register address for white color channel
+     */
+    PCA9633(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm,
+            uint8_t regWhitePwm);
 
     /**
      * Initialization.
@@ -362,6 +373,17 @@ public:
     * @param b  Value for blue color channel
     */
     void setRGB(uint8_t r, uint8_t g, uint8_t b);
+
+    /**
+    * Set PWM values for RGBW. Only available when PCA9633 object was created
+    * with the RGBW constructor.
+    *
+    * @param r  Value for red color channel
+    * @param g  Value for green color channel
+    * @param b  Value for blue color channel
+    * @param w  Value for white color channel
+    */
+    void setRGBW(uint8_t r, uint8_t g, uint8_t b, uint8_t w);
 
     /**
     * Set the LED driver output state for a given channel. There are four states:
@@ -436,7 +458,12 @@ private:
     /**
      * Mapping of different PWM channels to colors.
      */
-    uint8_t _regRedPwm, _regGreenPwm, _regBluePwm;
+    uint8_t _regRedPwm, _regGreenPwm, _regBluePwm, _regWhitePwm;
+
+    /**
+     * Indicates whether PCA9633 was created with the RGBW constructor.
+     */
+     bool _hasWhiteChannel;
 
     /**
      * Stored register content of LEDOUT when writing LDR_STATE_OFF to all LDRs
