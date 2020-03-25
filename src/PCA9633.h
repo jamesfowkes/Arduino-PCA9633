@@ -12,6 +12,7 @@
 #include <Wire.h>
 
 // Register definitions (page 11, table 7)
+
 /**
  * Mode register 1
  */
@@ -80,6 +81,7 @@
 
 
 // Bits in REG_MODE1 (page 12, table 8)
+
 /**
  * Bit for register Auto-Increment
  * 0 = disabled
@@ -130,6 +132,7 @@
 
 
 // Bits in REG_MODE2 (page 12-13, table 9)
+
 /**
  * Bit for group control; 0=dimming, 1=blinking
  */
@@ -171,6 +174,7 @@
 
 
 // Bits in REG_LEDOUT (page 14, table 13)
+
 /**
  * Lower of two bits for LDR3
  */
@@ -194,6 +198,7 @@
 
 
 // LED driver output state, LEDOUT (page 14, below table 13)
+
 /**
  * LED driver x is off
  */
@@ -222,6 +227,7 @@
 
 
 // Auto-Increment options (page 10, table 6)
+
 /**
  * No Auto-Increment
  */
@@ -297,12 +303,18 @@ public:
 
     /**
      * Turn on all LEDs. Restores settings saved at turnOff().
+     *
+     * WARNING: If you call turnOff() twice, without calling turnOn() in between,
+     *          then the restored state will be the turned off state!
      */
     void turnOn();
 
     /**
      * Turn off all LEDs. Saves current settings for turnOn().
      * For power saving, see sleep().
+     *
+     * WARNING: If you call turnOff() twice, without calling turnOn() in between,
+     *          then the restored state will be the turned off state!
      */
     void turnOff();
 
@@ -400,7 +412,7 @@ public:
 private:
 
     /**
-    * Write data to register.
+    * Write data to a register.
     *
     * @param registerAddress    Register address to write to
     * @param data               Data to write
@@ -408,7 +420,7 @@ private:
     void writeReg(uint8_t registerAddress, uint8_t data);
 
     /**
-    * Read data from register.
+    * Read data from a register.
     *
     * @param registerAddress    Register address to read from
      *

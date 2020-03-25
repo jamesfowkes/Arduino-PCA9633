@@ -10,7 +10,7 @@
 
 #include "PCA9633.h"
 
-/*************** PUBLIC METHODS ***************/
+/******************************* PUBLIC METHODS *******************************/
 PCA9633::PCA9633(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm) {
 
     _regRedPwm = regRedPwm;
@@ -179,7 +179,8 @@ void PCA9633::setGroupControlMode(uint8_t mode) {
     }
 }
 
-/*************** PRIVATE METHODS ***************/
+/****************************** PRIVATE METHODS *******************************/
+
 void PCA9633::writeReg(uint8_t registerAddress, uint8_t data) {
 
     _wire->beginTransmission(_deviceAddres);

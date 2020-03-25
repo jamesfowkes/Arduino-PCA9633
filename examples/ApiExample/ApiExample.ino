@@ -23,14 +23,14 @@ void loop() {
     pca9633.setRGB(255, 255, 255);
     delay(500);
 
-    // 1. test turn on/off
+    // 1. turn on/off
     pca9633.turnOff();
     delay(500);
 
     pca9633.turnOn();
     delay(500);
 
-    // 2. test individual dimming (setRGB() uses setPwm() internally)
+    // 2. individual dimming (setRGB() uses setPwm() internally)
     pca9633.setRGB(255, 255, 255);
     delay(500);
 
@@ -43,7 +43,7 @@ void loop() {
     pca9633.setRGB(0, 0, 255);
     delay(500);
 
-    // 3. test group dimming
+    // 3. group dimming
     pca9633.setRGB(255, 255, 255);
     pca9633.setLdrStateAll(LDR_STATE_IND_GRP);
 
@@ -53,7 +53,7 @@ void loop() {
     }
     delay(1000);
 
-    // 4. test changing ldr state
+    // 4. changing ldr state
     pca9633.setGrpPwm(255);
     pca9633.setRGB(255, 255, 255);
     pca9633.setLdrState(LDR_STATE_OFF, BIT_LDR1);
@@ -86,7 +86,7 @@ void loop() {
     delay(10000);
     pca9633.setGroupControlMode(GROUP_CONTROL_MODE_DIMMING);
 
-    // 6. test sleep mode
+    // 6. sleep mode
     pca9633.setRGB(0, 255, 255);
     delay(500);
 
