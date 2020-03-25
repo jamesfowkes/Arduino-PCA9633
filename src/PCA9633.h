@@ -355,8 +355,7 @@ public:
     void setBlinking(uint8_t blinkPeriod, float onOffRatio);
 
     /**
-    * Set up values for blinking mode. Blinking mode needs to be activated
-    * manually by calling setGroupControlMode(GROUP_CONTROL_MODE_BLINKING).
+    * Set PWM values for RGB.
     *
     * @param r  Value for red color channel
     * @param g  Value for green color channel
