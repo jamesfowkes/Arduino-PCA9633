@@ -3,16 +3,27 @@
 This library was developed and tested on esp32 with a PCA9633DP2 controller, but
 should work for every other board as well.
 
-API overview:
+## API overview:
 ```cpp
     /**
-     * Constructor for PCA9633.
+     * Constructor for PCA9633 with RGB.
      *
      * @param regRedPwm     Register address for red color channel
      * @param regGreenPwm   Register address for green color channel
      * @param regBluePwm    Register address for blue color channel
      */
     PCA9633(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm);
+
+    /**
+     * Constructor for PCA9633 with RGBW.
+     *
+     * @param regRedPwm     Register address for red color channel
+     * @param regGreenPwm   Register address for green color channel
+     * @param regBluePwm    Register address for blue color channel
+     * @param regWhitePwm   Register address for white color channel
+     */
+    PCA9633(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm,
+            uint8_t regWhitePwm);
 
     /**
      * Initialization.
@@ -24,12 +35,18 @@ API overview:
 
     /**
      * Turn on all LEDs. Restores settings saved at turnOff().
+     *
+     * WARNING: If you call turnOff() twice, without calling turnOn() in between,
+     *          then the restored state will be the turned off state!
      */
     void turnOn();
 
     /**
      * Turn off all LEDs. Saves current settings for turnOn().
      * For power saving, see sleep().
+     *
+     * WARNING: If you call turnOff() twice, without calling turnOn() in between,
+     *          then the restored state will be the turned off state!
      */
     void turnOff();
 
@@ -70,14 +87,24 @@ API overview:
     void setBlinking(uint8_t blinkPeriod, float onOffRatio);
 
     /**
-    * Set up values for blinking mode. Blinking mode needs to be activated
-    * manually by calling setGroupControlMode(GROUP_CONTROL_MODE_BLINKING).
+    * Set PWM values for RGB.
     *
     * @param r  Value for red color channel
     * @param g  Value for green color channel
     * @param b  Value for blue color channel
     */
     void setRGB(uint8_t r, uint8_t g, uint8_t b);
+
+    /**
+    * Set PWM values for RGBW. Only available when PCA9633 object was created
+    * with the RGBW constructor.
+    *
+    * @param r  Value for red color channel
+    * @param g  Value for green color channel
+    * @param b  Value for blue color channel
+    * @param w  Value for white color channel
+    */
+    void setRGBW(uint8_t r, uint8_t g, uint8_t b, uint8_t w);
 
     /**
     * Set the LED driver output state for a given channel. There are four states:
