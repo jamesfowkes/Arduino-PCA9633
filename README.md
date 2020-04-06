@@ -1,7 +1,7 @@
 # PCA9633 driver for Arduino
 
-This library was developed and tested on esp32 with a PCA9633DP2 controller, but
-should work for every other board as well.
+This library was developed and tested on an esp32 with a PCA9633DP2 controller,
+but should work for every other board as well.
 
 ## API overview:
 ```cpp
