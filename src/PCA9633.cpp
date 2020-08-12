@@ -39,10 +39,6 @@ void PCA9633::begin(uint16_t deviceAddress, TwoWire *wire) {
     // clear/ reset registers
     writeReg(REG_MODE1, 0x0);
     writeReg(REG_MODE2, 0x0);
-
-    setLdrStateAll(LDR_STATE_IND_GRP);
-    setGroupControlMode(GROUP_CONTROL_MODE_DIMMING);
-    setRGB(255, 255, 255);
 }
 
 void PCA9633::wakeUp() {
