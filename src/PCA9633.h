@@ -316,7 +316,7 @@ public:
      * Turn on all LEDs. Restores settings saved at turnOff().
      *
      * WARNING: If you call turnOff() twice, without calling turnOn() in between,
-     *          then the restored state will be the turned off state!
+     *          then the restored state will be LDR_STATE_OFF!
      */
     void turnOn();
 
@@ -325,7 +325,7 @@ public:
      * For power saving, see sleep().
      *
      * WARNING: If you call turnOff() twice, without calling turnOn() in between,
-     *          then the restored state will be the turned off state!
+     *          then the restored state will be LDR_STATE_OFF!
      */
     void turnOff();
 
