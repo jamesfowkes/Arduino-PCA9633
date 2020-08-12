@@ -135,45 +135,41 @@ void PCA9633::setLdrStateAll(uint8_t state) {
 
 void PCA9633::setAutoIncrement(uint8_t option) {
 
-    bool enabled, bit0, bit1;
+    uint8_t newReg;
 
     switch (option) {
 
         case AI_ALL:
-            enabled = true;
-            bit0 = false;
-            bit1 = false;
+            newReg = (1 << BIT_AI2)
+                   | (0 << BIT_AI1)
+                   | (0 << BIT_AI0);
             break;
 
         case AI_IND:
-            enabled = true;
-            bit0 = false;
-            bit1 = true;
+            newReg = (1 << BIT_AI2)
+                   | (1 << BIT_AI1)
+                   | (0 << BIT_AI0);
             break;
 
         case AI_GBL:
-            enabled = true;
-            bit0 = true;
-            bit1 = false;
+            newReg = (1 << BIT_AI2)
+                   | (0 << BIT_AI1)
+                   | (1 << BIT_AI0);
             break;
 
         case AI_IND_GBL:
-            enabled = true;
-            bit0 = true;
-            bit1 = true;
+            newReg = (1 << BIT_AI2)
+                   | (1 << BIT_AI1)
+                   | (1 << BIT_AI0);
             break;
 
         case AI_DISABLED:
         default:
-            enabled = false;
-            bit0 = false;
-            bit1 = false;
+            newReg = (0 << BIT_AI2)
+                   | (0 << BIT_AI1)
+                   | (0 << BIT_AI0);
             break;
     }
-
-    uint8_t newReg = ( enabled << BIT_AI2
-                       | bit1 << BIT_AI1
-                       | bit0 << BIT_AI0 );
 
     writeReg(REG_MODE1, newReg);
 }
