@@ -310,7 +310,7 @@ public:
      * @param deviceAddress I2C address of the pca9633
      * @param wire          Reference to TwoWire for I2C communication
      */
-    void begin(uint16_t deviceAddress, TwoWire *wire);
+    void begin(uint8_t deviceAddress, TwoWire *wire);
 
     /**
      * Turn on all LEDs. Restores settings saved at turnOff().
@@ -453,7 +453,7 @@ private:
     /**
      * I2C address of device.
      */
-    uint16_t _deviceAddres;
+    uint8_t _deviceAddres;
 
     /**
      * Mapping of different PWM channels to colors.

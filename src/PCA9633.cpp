@@ -29,7 +29,7 @@ PCA9633::PCA9633(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm,
     _hasWhiteChannel = true;
 }
 
-void PCA9633::begin(uint16_t deviceAddress, TwoWire *wire) {
+void PCA9633::begin(uint8_t deviceAddress, TwoWire *wire) {
 
     _deviceAddres = deviceAddress;
 
