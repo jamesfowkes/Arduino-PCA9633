@@ -207,7 +207,7 @@ uint8_t PCA9633::readReg(uint8_t registerAddress) {
     _wire->write(registerAddress);
     _wire->endTransmission();
 
-    _wire->requestFrom(_deviceAddres, (uint8_t) 1, true);
+    _wire->requestFrom(_deviceAddres, (uint8_t) 1);
 
     if (_wire->available() == 1) {
         return _wire->read();
