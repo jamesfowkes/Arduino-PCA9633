@@ -397,6 +397,13 @@ public:
     void setDrvState(uint8_t state);
 
     /**
+    * Set the invert state. Defaults to non-inverting
+    *
+    * @param invert  True to set the invert bit, false to clear it
+    */
+    void setInvertState(bool invert);
+
+    /**
     * Set the LED driver output state for a given channel. There are four states:
     *   - LDR_STATE_OFF
     *   - LDR_STATE_ON
@@ -440,17 +447,6 @@ public:
     */
     void setGroupControlMode(uint8_t mode);
 
-
-private:
-
-    /**
-    * Write data to a register.
-    *
-    * @param registerAddress    Register address to write to
-    * @param data               Data to write
-    */
-    void writeReg(uint8_t registerAddress, uint8_t data);
-
     /**
     * Read data from a register.
     *
@@ -460,6 +456,15 @@ private:
      * @return  -1 if no byte was available to be read
     */
     uint8_t readReg(uint8_t registerAddress);
+private:
+
+    /**
+    * Write data to a register.
+    *
+    * @param registerAddress    Register address to write to
+    * @param data               Data to write
+    */
+    void writeReg(uint8_t registerAddress, uint8_t data);
 
     /**
      * I2C address of device.
