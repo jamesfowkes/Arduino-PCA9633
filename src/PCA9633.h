@@ -195,8 +195,17 @@
  */
 #define BIT_LDR0    0
 
-// LED driver output type, OUTDRV (page 11, MODE2 register table)
+// LED driver output type, OUTDRV (page 12, table 9, MODE2 register table)
+
+/**
+ * The 4 LED outputs are configured with an open-drain structure
+ */
 #define OUTDRV_OPEN_DRAIN 0
+
+/**
+ * The 4 LED outputs are configured with a totem pole structure
+ */
+
 #define OUTDRV_TOTEM_POLE 1
 
 // LED driver output state, LEDOUT (page 14, below table 13)
