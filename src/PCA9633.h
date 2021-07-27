@@ -205,7 +205,6 @@
 /**
  * The 4 LED outputs are configured with a totem pole structure
  */
-
 #define OUTDRV_TOTEM_POLE 1
 
 // LED driver output state, LEDOUT (page 14, below table 13)
