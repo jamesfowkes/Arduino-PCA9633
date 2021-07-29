@@ -133,6 +133,20 @@ void PCA9633::setLdrStateAll(uint8_t state) {
     writeReg(REG_LEDOUT, newReg);
 }
 
+void PCA9633::setDrvState(uint8_t state) {
+
+    uint8_t prevReg = readReg(REG_MODE2);
+    uint8_t newReg;
+
+    // first clear the OUTDRV bit
+    newReg = prevReg & ~(1 << BIT_OUTDRV);
+
+    // second set new state to specified drv
+    newReg |= (state << BIT_OUTDRV);
+
+    writeReg(REG_MODE2, newReg);
+}
+
 void PCA9633::setAutoIncrement(uint8_t option) {
 
     uint8_t newReg;

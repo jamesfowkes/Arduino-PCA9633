@@ -195,7 +195,17 @@
  */
 #define BIT_LDR0    0
 
+// LED driver output type, OUTDRV (page 12, table 9, MODE2 register table)
 
+/**
+ * The 4 LED outputs are configured with an open-drain structure
+ */
+#define OUTDRV_OPEN_DRAIN 0
+
+/**
+ * The 4 LED outputs are configured with a totem pole structure
+ */
+#define OUTDRV_TOTEM_POLE 1
 
 // LED driver output state, LEDOUT (page 14, below table 13)
 
@@ -384,6 +394,15 @@ public:
     * @param w  Value for white color channel
     */
     void setRGBW(uint8_t r, uint8_t g, uint8_t b, uint8_t w);
+
+    /**
+    * Set the global driver output type for a given channel. There are two types:
+    *   - OUTDRV_OPEN_DRAIN
+    *   - OUTDRV_TOTEM_POLE
+    *
+    * @param state  One of the two possible states
+    */
+    void setDrvState(uint8_t state);
 
     /**
     * Set the LED driver output state for a given channel. There are four states:
