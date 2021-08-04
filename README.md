@@ -133,6 +133,15 @@ supported, simply clone this repository according to the platforms guidelines.
     void setRGBW(uint8_t r, uint8_t g, uint8_t b, uint8_t w);
 
     /**
+    * Set the global driver output type for a given channel. There are two types:
+    *   - OUTDRV_OPEN_DRAIN
+    *   - OUTDRV_TOTEM_POLE
+    *
+    * @param state  One of the two possible states
+    */
+    void setDrvState(uint8_t state);
+
+    /**
     * Set the LED driver output state for a given channel. There are four states:
     *   - LDR_STATE_OFF
     *   - LDR_STATE_ON

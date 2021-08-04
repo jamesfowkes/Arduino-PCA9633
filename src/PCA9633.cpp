@@ -138,8 +138,8 @@ void PCA9633::setDrvState(uint8_t state) {
     uint8_t prevReg = readReg(REG_MODE2);
     uint8_t newReg;
 
-    // first clear both bits of drv
-    newReg = prevReg & ~(0b11 << BIT_OUTDRV);
+    // first clear the OUTDRV bit
+    newReg = prevReg & ~(1 << BIT_OUTDRV);
 
     // second set new state to specified drv
     newReg |= (state << BIT_OUTDRV);

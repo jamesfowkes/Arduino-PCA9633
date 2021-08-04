@@ -195,8 +195,16 @@
  */
 #define BIT_LDR0    0
 
-// LED driver output type, OUTDRV (page 11, MODE2 register table)
+// LED driver output type, OUTDRV (page 12, table 9, MODE2 register table)
+
+/**
+ * The 4 LED outputs are configured with an open-drain structure
+ */
 #define OUTDRV_OPEN_DRAIN 0
+
+/**
+ * The 4 LED outputs are configured with a totem pole structure
+ */
 #define OUTDRV_TOTEM_POLE 1
 
 // LED driver output state, LEDOUT (page 14, below table 13)
@@ -397,13 +405,6 @@ public:
     void setDrvState(uint8_t state);
 
     /**
-    * Set the invert state. Defaults to non-inverting
-    *
-    * @param invert  True to set the invert bit, false to clear it
-    */
-    void setInvertState(bool invert);
-
-    /**
     * Set the LED driver output state for a given channel. There are four states:
     *   - LDR_STATE_OFF
     *   - LDR_STATE_ON
@@ -447,15 +448,7 @@ public:
     */
     void setGroupControlMode(uint8_t mode);
 
-    /**
-    * Read data from a register.
-    *
-    * @param registerAddress    Register address to read from
-     *
-     * @return  byte read from given registerAddress
-     * @return  -1 if no byte was available to be read
-    */
-    uint8_t readReg(uint8_t registerAddress);
+
 private:
 
     /**
@@ -465,6 +458,16 @@ private:
     * @param data               Data to write
     */
     void writeReg(uint8_t registerAddress, uint8_t data);
+
+    /**
+    * Read data from a register.
+    *
+    * @param registerAddress    Register address to read from
+     *
+     * @return  byte read from given registerAddress
+     * @return  -1 if no byte was available to be read
+    */
+    uint8_t readReg(uint8_t registerAddress);
 
     /**
      * I2C address of device.
