@@ -207,6 +207,18 @@
  */
 #define OUTDRV_TOTEM_POLE 1
 
+// LED driver invert mode, INVRT (page 12, table 9, MODE2 register table, also see section 7.7)
+
+/**
+ * The 4 LED outputs are configured with non-inverting outputs
+ */
+#define INVERT_OFF 0
+
+/**
+ * The 4 LED outputs are configured with inverting outputs
+ */
+#define INVERT_ON 1
+
 // LED driver output state, LEDOUT (page 14, below table 13)
 
 /**
@@ -403,6 +415,15 @@ public:
     * @param state  One of the two possible states
     */
     void setDrvState(uint8_t state);
+
+    /**
+    * Set the global output invert mode. There are two types:
+    *   - INVERT_OFF
+    *   - INVERT_ON
+    *
+    * @param state  One of the two possible states
+    */
+    void setInvertState(uint8_t state);
 
     /**
     * Set the LED driver output state for a given channel. There are four states:

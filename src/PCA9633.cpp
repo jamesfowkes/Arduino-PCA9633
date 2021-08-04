@@ -147,6 +147,20 @@ void PCA9633::setDrvState(uint8_t state) {
     writeReg(REG_MODE2, newReg);
 }
 
+void PCA9633::setInvertState(uint8_t invert) {
+
+    uint8_t prevReg = readReg(REG_MODE2);
+    uint8_t newReg;
+
+    // first clear the INVRT bit
+    newReg = prevReg & ~(1 << BIT_INVRT);
+
+    // second set new state to specified invrt
+    newReg |= (state << BIT_INVRT);
+
+    writeReg(REG_MODE2, newReg);
+}
+
 void PCA9633::setAutoIncrement(uint8_t option) {
 
     uint8_t newReg;
